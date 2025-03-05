@@ -1,6 +1,5 @@
 import Image from 'next/image'
-import styles from "./page.module.css";
-import Link from 'next/link';
+import styles from "./styles.module.css";
 
 function getCurrentYearString(): string {
   return new Date().getFullYear().toString();
@@ -9,16 +8,8 @@ function getCurrentYearString(): string {
 export default function Home() {
   return (
     <div className={styles.page}>
-      <Image 
-        src="/heimatfront-banner.png" 
-        alt="heimatfront banner" 
-        width={1920} 
-        height={1080} 
-        className={styles.bigImage}
-      />
       <main className={styles.main}>
         <h1>Willkommen bei <div style={{color: "green"}}>Heimatfront</div> Kamerad</h1><h2>einer der größten deutschen Communities für Arma Reforger</h2>
-        <Link href="/dashboard">Dashboard</Link>
       </main>
       <footer className={styles.footer}>
         <pre>
