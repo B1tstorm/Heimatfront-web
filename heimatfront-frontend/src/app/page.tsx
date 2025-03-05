@@ -18,7 +18,7 @@ export default function Home() {
           </a>
         </pre>
         <pre>
-          <a href="https://discord.gg/Es8RVSNW">Discord
+          <a href="https://discord.gg/heimatfront">Discord
             <Image src="/Discord-Symbol-Blurple.png" alt='Official Discord logo' width={35} height={30} />
           </a>
         </pre>
