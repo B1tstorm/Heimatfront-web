@@ -35,8 +35,22 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: greenyellow;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
 }
+
+.primaryTextColor {
+  color: rgb(26, 41, 31)
+}
+
+.primaryBgColor {
+  background-color: rgb(26, 41, 31)
+}
+
+/* Overwrittings of MUI css*/
