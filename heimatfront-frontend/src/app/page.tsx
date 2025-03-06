@@ -7,6 +7,8 @@ import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import { Paper, Stack, Typography } from "@mui/material";
 import Link from "next/link";
+import ExtensionIcon from "@mui/icons-material/Extension";
+import ExtensionOutlinedIcon from "@mui/icons-material/ExtensionOutlined";
 
 function getCurrentYearString(): string {
   return new Date().getFullYear().toString();
@@ -67,7 +69,7 @@ export default async function Home() {
             </CardContent>
             <CardActions>
               <Button size="small">
-                <Link href="/events">Weiterlesen</Link>
+                <Link href="/events">Mehr</Link>
               </Button>
             </CardActions>
           </Card>
@@ -101,7 +103,7 @@ export default async function Home() {
             </CardContent>
             <CardActions>
               <Button size="small">
-                <Link href="/news">Weiterlesen</Link>
+                <Link href="/news">Mehr</Link>
               </Button>
             </CardActions>
           </Card>
@@ -115,7 +117,11 @@ export default async function Home() {
                 {serverInfos.map((serverInfo, index) => (
                   <Paper key={index} sx={{ padding: 2 }} elevation={4}>
                     <Stack direction="row" spacing={4}>
-                      <p>{serverInfo.attributes.status}</p>
+                      <p>
+                        {serverInfo.attributes.status === "online"
+                          ? "🟢"
+                          : "🔴"}
+                      </p>
                       <p>Rang #{serverInfo.attributes.rank}</p>
                       <p>
                         {serverInfo.attributes.players}/
@@ -123,9 +129,12 @@ export default async function Home() {
                       </p>
                       <p>{serverInfo.attributes.name}</p>
                       <p>
-                        {serverInfo.attributes.details.reforger.mods.length > 1
-                          ? "Mit Mods"
-                          : "Keine Mods"}
+                        {serverInfo.attributes.details.reforger.mods.length >
+                        1 ? (
+                          <ExtensionIcon />
+                        ) : (
+                          <ExtensionOutlinedIcon />
+                        )}
                       </p>
                     </Stack>
                   </Paper>
