@@ -45,12 +45,25 @@ a:hover {
   }
 }
 
-.primaryTextColor {
-  color: rgb(26, 41, 31)
-}
-
-.primaryBgColor {
-  background-color: rgb(26, 41, 31)
-}
-
 /* Overwrittings of MUI css*/
+
+p {
+  color: white;
+}
+
+.css-1o9gf9u-MuiPaper-root-MuiCard-root {
+  background-color: rgb(26, 41, 31);
+  color: white;
+}
+.css-1fdopfm-MuiPaper-root {
+  background-color: transparent;
+  color: white;
+}
+
+h2 {
+  color: rgb(134, 170, 62)
+}
+
+h3 {
+  color: rgb(134, 170, 62)
+}
