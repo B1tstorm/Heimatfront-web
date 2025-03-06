@@ -5,21 +5,20 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
-import {
-  ListItem,
-  ListItemText,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Paper, Stack, Typography } from "@mui/material";
 import Link from "next/link";
-import List from "@mui/icons-material/List";
 
 function getCurrentYearString(): string {
   return new Date().getFullYear().toString();
 }
 
-export default function Home() {
+export default async function Home() {
+  const serverInfosResponse = await fetch(
+    "https://api.battlemetrics.com/servers?filter[search]=Heimatfront"
+  );
+  const serverInfosJson = await serverInfosResponse.json();
+  const serverInfos = serverInfosJson.data;
+
   return (
     <div className={styles.page}>
       <Grid container spacing={6}>
@@ -36,76 +35,39 @@ export default function Home() {
           </Card>
         </Grid>
 
-        <Grid size={{ xs: 12, md: 12 }}>
-          <h2>Server</h2>
-          <Card sx={{ minWidth: 275 }}>
-            <CardContent style={{ textAlign: "center" }}>
-              <Stack spacing={2}>
-                <Paper sx={{ padding: 2 }}>
-                  <Stack direction="row" spacing={2}>
-                    <p>Status: Online/Offline</p>
-                    <p>Rank: #1</p>
-                    <p>Servername: Heimat...</p>
-                    <p>Spielerzahl: 100/128</p>
-                    <p>Mods: true/false</p>
-                    <p>Spielerzahl stats: graph</p>
-                  </Stack>
-                </Paper>
-              </Stack>
-            </CardContent>
-            <CardActions>
-              <Button size="small">
-                <a href="https://www.battlemetrics.com/servers/arma3/1234567">
-                  Battlemetrics
-                </a>
-              </Button>
-            </CardActions>
-          </Card>
-        </Grid>
-
         <Grid size={{ xs: 12, md: 6 }}>
           <h2>Event</h2>
-          <Card sx={{ minWidth: 275 }}>
+          <Card
+            sx={{
+              minHeight: 400,
+              maxHeight: 400,
+              maxWidth: 800,
+              overflow: "auto",
+            }}
+          >
             <CardContent>
               <Typography variant="h6" component="div" textAlign={"center"}>
-                Titel
+                Squad vs Squad Turnier
               </Typography>
-              <Typography variant="body2">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-                dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                sed diam voluptua. At vero eos et accusam et justo duo dolores
-                et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-                est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-                consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                invidunt ut labore et dolore magna aliquyam erat, sed diam
-                voluptua. At vero eos et accusam et justo duo dolores et ea
-                rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in
-                hendrerit in vulputate velit esse molestie consequat, vel illum
-                dolore eu feugiat nulla facilisis at vero eros et accumsan et
-                iusto odio dignissim qui blandit praesent luptatum zzril delenit
-                augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor
-                sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                Ut wisi enim ad minim veniam, quis nostrud exerci tation
-                ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                consequat. Duis autem vel eum iriure dolor in hendrerit in
-                vulputate velit esse molestie consequat, vel illum dolore eu
-                feugiat nulla facilisis at vero eros et accumsan et iusto odio
-                dignissim qui blandit praesent luptatum zzril delenit augue duis
-                dolore te feugait nulla facilisi. Nam liber tempor cum soluta
-                nobis eleifend option congue nihil imperdiet doming id quod
-                mazim placerat facer
+              <Typography variant="body1">
+                DE: 🔥 Squad-Turnier – Zeigt, was euer Team draufhat! 🔥 Macht
+                euch bereit für das ultimative Squad-Turnier! In diesem
+                actiongeladenen Wettbewerb treten Squads in intensiven Matches
+                gegeneinander an, um zu beweisen, welches Team das beste ist. 💥
+                Modus: Squad vs. Squad 👥 Teamgröße: max. 6 Spieler pro Squad 🏆
+                Ziel: Gewinnt gegen gegnerische Squads und sichert euch den
+                Turniersieg! 🎮 Game: Arma Reforger 📅 Datum: 15.03.2025 ⏰
+                Uhrzeit: 18:00 Uhr 📍 Ort: SV7 Heimatfront Eventserver
+                Strategie, Teamwork und Skill sind gefragt! Seid ihr bereit,
+                eure Gegner zu dominieren und euch den Sieg zu holen? Meldet
+                euer Squad jetzt an und kämpft um Ruhm und Ehre! 🔥🏆 Anmeldung
+                & weitere Infos:
+                https://challonge.com/de/tournaments/signup/3nzqpn8SZn
               </Typography>
             </CardContent>
             <CardActions>
               <Button size="small">
-                <Link href="/events">Events</Link>
+                <Link href="/events">Weiterlesen</Link>
               </Button>
             </CardActions>
           </Card>
@@ -113,47 +75,68 @@ export default function Home() {
 
         <Grid size={{ xs: 12, md: 6 }}>
           <h2>News</h2>
-          <Card sx={{ minWidth: 275 }}>
+          <Card
+            sx={{
+              minHeight: 400,
+              maxHeight: 400,
+              maxWidth: 800,
+              overflow: "auto",
+            }}
+          >
             <CardContent>
               <Typography variant="h6" component="div" textAlign={"center"}>
-                Titel
+                Suchen Verstärkung
               </Typography>
-              <Typography variant="body2">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-                dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                sed diam voluptua. At vero eos et accusam et justo duo dolores
-                et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-                est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-                consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                invidunt ut labore et dolore magna aliquyam erat, sed diam
-                voluptua. At vero eos et accusam et justo duo dolores et ea
-                rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in
-                hendrerit in vulputate velit esse molestie consequat, vel illum
-                dolore eu feugiat nulla facilisis at vero eros et accumsan et
-                iusto odio dignissim qui blandit praesent luptatum zzril delenit
-                augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor
-                sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                Ut wisi enim ad minim veniam, quis nostrud exerci tation
-                ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                consequat. Duis autem vel eum iriure dolor in hendrerit in
-                vulputate velit esse molestie consequat, vel illum dolore eu
-                feugiat nulla facilisis at vero eros et accumsan et iusto odio
-                dignissim qui blandit praesent luptatum zzril delenit augue duis
-                dolore te feugait nulla facilisi. Nam liber tempor cum soluta
-                nobis eleifend option congue nihil imperdiet doming id quod
-                mazim placerat facer
+              <Typography variant="body1">
+                Wir suchen wieder dringend Verstärkung in unserem Server-Team.
+                Anforderungen an euch sind: Mind. 18 Jahre alt geistige Reife
+                ein gut funktionierendes Headset Ehrgeiz + selbstständiges
+                Arbeiten evtl. Erfahrung (kein MUSS) Was wir euch bieten:
+                Aufstiegsmöglichkeiten Ausbildung und Einweisung in den Support
+                einen zugewiesenen Mentor für eure Probezeit ein herzliches Team
+                und Zusammenhalt Wenn ihr euch in dieser Aufgabe seht, erstellt
+                gerne ein -Ticket (Bewerbung) Bitte beachtet, dass ihr das
+                RICHTIGE Ticket aufmacht.
               </Typography>
             </CardContent>
             <CardActions>
               <Button size="small">
-                <Link href="/news">News</Link>
+                <Link href="/news">Weiterlesen</Link>
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
+
+        <Grid size={{ xs: 12, md: 12 }}>
+          <h2>Server</h2>
+          <Card sx={{ minWidth: 275 }}>
+            <CardContent style={{ textAlign: "center" }}>
+              <Stack spacing={2}>
+                {serverInfos.map((serverInfo, index) => (
+                  <Paper key={index} sx={{ padding: 2 }} elevation={4}>
+                    <Stack direction="row" spacing={4}>
+                      <p>{serverInfo.attributes.status}</p>
+                      <p>Rang #{serverInfo.attributes.rank}</p>
+                      <p>
+                        {serverInfo.attributes.players}/
+                        {serverInfo.attributes.maxPlayers}
+                      </p>
+                      <p>{serverInfo.attributes.name}</p>
+                      <p>
+                        {serverInfo.attributes.details.reforger.mods.length > 1
+                          ? "Mit Mods"
+                          : "Keine Mods"}
+                      </p>
+                    </Stack>
+                  </Paper>
+                ))}
+              </Stack>
+            </CardContent>
+            <CardActions>
+              <Button size="small">
+                <a href="https://www.battlemetrics.com/servers/arma3/1234567">
+                  Battlemetrics
+                </a>
               </Button>
             </CardActions>
           </Card>
@@ -171,8 +154,24 @@ export default function Home() {
                   - Ideen die das Spielerlebnis betreffen, kannst du im Discord
                   im Channel Vorschläge mitteilen
                 </Typography>
-                - Ideen die unsere Website oder unseren eigenen Bot betreffen
-                kannst du über Github mitteilen
+                <Typography variant="body1">
+                  - Ideen die unsere Website oder unseren eigenen Bot betreffen
+                  kannst du über Github mitteilen - Ideen die unsere Website
+                  oder unseren eigenen Bot betreffen kannst du über Github
+                  mitteilen
+                </Typography>
+                <Typography variant="subtitle1">
+                  Oder mit einer Spende um die monatlichen Kosten zu decken
+                  {"  "}
+                  <a href="https://ko-fi.com/heimatfront">
+                    <Image
+                      src="/kofi_symbol.png"
+                      alt="Official Ko-fi logo"
+                      width={30}
+                      height={30}
+                    />
+                  </a>
+                </Typography>
               </Stack>
             </CardContent>
           </Card>

@@ -13,7 +13,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./navbar.module.css";
 
-const pages = ["home", "tools", "news", "events", "dashboard"];
+const pages = ["home", "news", "events"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
