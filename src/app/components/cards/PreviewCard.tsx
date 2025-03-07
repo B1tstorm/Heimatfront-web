@@ -7,19 +7,19 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 
-interface SmallCardProps {
+interface PreviewCardProps {
   title: string;
   description: string;
   moreBtnHref: string;
   extraBtnHref?: string;
 }
 
-function SmallCard({
+function PreviewCard({
   title,
   description,
   moreBtnHref,
   extraBtnHref,
-}: SmallCardProps) {
+}: PreviewCardProps) {
   return (
     <Card
       sx={{
@@ -55,4 +55,4 @@ function SmallCard({
   );
 }
 
-export default SmallCard;
+export default PreviewCard;
