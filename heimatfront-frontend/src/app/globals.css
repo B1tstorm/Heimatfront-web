@@ -67,3 +67,14 @@ h2 {
 h3 {
   color: rgb(134, 170, 62)
 }
+
+.MuiButton-root {
+  color:rgb(134, 170, 62);
+  background-color: transparent;
+}
+
+.MuiButton-root:hover {
+  color:yellowgreen;
+  background-color: transparent;
+}
+
