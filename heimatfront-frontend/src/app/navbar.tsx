@@ -84,9 +84,13 @@ function ResponsiveAppBar() {
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page === "home" ? (
-                  <Link href={"/"}>home</Link>
+                  <Link className={styles.btnColor} href={"/"}>
+                    home
+                  </Link>
                 ) : (
-                  <Link href={page}>{page}</Link>
+                  <Link className={styles.btnColor} href={page}>
+                    {page}
+                  </Link>
                 )}
               </Button>
             ))}

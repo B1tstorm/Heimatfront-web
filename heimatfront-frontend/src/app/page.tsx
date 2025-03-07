@@ -9,17 +9,21 @@ import { Paper, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import ExtensionIcon from "@mui/icons-material/Extension";
 import ExtensionOutlinedIcon from "@mui/icons-material/ExtensionOutlined";
+import { ServerInfoJson, ServerInfoData } from "./battleMetricsTypes";
 
 function getCurrentYearString(): string {
   return new Date().getFullYear().toString();
 }
 
+const serverIps: string[] = ["167.235.90.86", "176.9.114.132", "88.99.65.118"];
+
 export default async function Home() {
   const serverInfosResponse = await fetch(
     "https://api.battlemetrics.com/servers?filter[search]=Heimatfront"
   );
-  const serverInfosJson = await serverInfosResponse.json();
-  const serverInfos = serverInfosJson.data;
+  const serverInfosJson: ServerInfoJson = await serverInfosResponse.json();
+  const serverInfos: ServerInfoData[] = serverInfosJson.data;
+  console.debug(serverInfos);
 
   return (
     <div className={styles.page}>
@@ -28,10 +32,10 @@ export default async function Home() {
           <Card sx={{ minWidth: 275 }}>
             <CardContent style={{ textAlign: "center" }}>
               <Stack spacing={2}>
-                <h1>
+                <Typography variant="h4" component="div">
                   Werde Teil einer der größten deutschen Communities für Arma
                   Reforger, Kamerad!
-                </h1>
+                </Typography>
               </Stack>
             </CardContent>
           </Card>
@@ -41,8 +45,8 @@ export default async function Home() {
           <h2>Event</h2>
           <Card
             sx={{
-              minHeight: 400,
-              maxHeight: 400,
+              minHeight: 420,
+              maxHeight: 420,
               maxWidth: 800,
               overflow: "auto",
             }}
@@ -52,19 +56,25 @@ export default async function Home() {
                 Squad vs Squad Turnier
               </Typography>
               <Typography variant="body1">
-                DE: 🔥 Squad-Turnier – Zeigt, was euer Team draufhat! 🔥 Macht
-                euch bereit für das ultimative Squad-Turnier! In diesem
+                🔥 Squad-Turnier – Zeigt, was euer Team draufhat! 🔥 Macht euch
+                bereit für das ultimative Squad-Turnier! In diesem
                 actiongeladenen Wettbewerb treten Squads in intensiven Matches
                 gegeneinander an, um zu beweisen, welches Team das beste ist. 💥
                 Modus: Squad vs. Squad 👥 Teamgröße: max. 6 Spieler pro Squad 🏆
                 Ziel: Gewinnt gegen gegnerische Squads und sichert euch den
                 Turniersieg! 🎮 Game: Arma Reforger 📅 Datum: 15.03.2025 ⏰
-                Uhrzeit: 18:00 Uhr 📍 Ort: SV7 Heimatfront Eventserver
+                Uhrzeit: 15:00 Uhr 📍 Ort: SV7 Heimatfront Eventserver
                 Strategie, Teamwork und Skill sind gefragt! Seid ihr bereit,
                 eure Gegner zu dominieren und euch den Sieg zu holen? Meldet
-                euer Squad jetzt an und kämpft um Ruhm und Ehre! 🔥🏆 Anmeldung
-                & weitere Infos:
-                https://challonge.com/de/tournaments/signup/3nzqpn8SZn
+                euer Squad jetzt an und kämpft um Ruhm und Ehre! 🔥🏆
+                <Button size="small">
+                  <Link
+                    target="_blank"
+                    href="https://challonge.com/de/tournaments/signup/3nzqpn8SZn"
+                  >
+                    Anmeldung & weitere Infos
+                  </Link>
+                </Button>
               </Typography>
             </CardContent>
             <CardActions>
@@ -79,8 +89,8 @@ export default async function Home() {
           <h2>News</h2>
           <Card
             sx={{
-              minHeight: 400,
-              maxHeight: 400,
+              minHeight: 420,
+              maxHeight: 420,
               maxWidth: 800,
               overflow: "auto",
             }}
@@ -114,31 +124,34 @@ export default async function Home() {
           <Card sx={{ minWidth: 275 }}>
             <CardContent style={{ textAlign: "center" }}>
               <Stack spacing={2}>
-                {serverInfos.map((serverInfo, index) => (
-                  <Paper key={index} sx={{ padding: 2 }} elevation={4}>
-                    <Stack direction="row" spacing={4}>
-                      <p>
-                        {serverInfo.attributes.status === "online"
-                          ? "🟢"
-                          : "🔴"}
-                      </p>
-                      <p>Rang #{serverInfo.attributes.rank}</p>
-                      <p>
-                        {serverInfo.attributes.players}/
-                        {serverInfo.attributes.maxPlayers}
-                      </p>
-                      <p>{serverInfo.attributes.name}</p>
-                      <p>
+                {serverInfos
+                  .filter((serverInfos) =>
+                    serverIps.includes(serverInfos.attributes.ip)
+                  )
+                  .map((serverInfo: ServerInfoData, index: number) => (
+                    <Paper key={index} sx={{ padding: 2 }} elevation={4}>
+                      <Stack direction="row" spacing={4} alignItems="end">
+                        <p>
+                          {serverInfo.attributes.status === "online"
+                            ? "🟢"
+                            : "🔴"}
+                        </p>
+                        <p>Rang #{serverInfo.attributes.rank}</p>
+                        <p>
+                          {serverInfo.attributes.players}/
+                          {serverInfo.attributes.maxPlayers}
+                        </p>
+                        <p>{serverInfo.attributes.name}</p>
+
                         {serverInfo.attributes.details.reforger.mods.length >
                         1 ? (
                           <ExtensionIcon />
                         ) : (
                           <ExtensionOutlinedIcon />
                         )}
-                      </p>
-                    </Stack>
-                  </Paper>
-                ))}
+                      </Stack>
+                    </Paper>
+                  ))}
               </Stack>
             </CardContent>
             <CardActions>

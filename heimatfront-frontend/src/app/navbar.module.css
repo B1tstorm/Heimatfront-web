@@ -7,3 +7,7 @@
     background-color: rgb(26, 41, 31);
     background-image: url(../../public/navbar-background.jpg);
 }
+
+.btnColor {
+    color: white;
+}
