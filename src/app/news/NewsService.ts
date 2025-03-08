@@ -1,13 +1,7 @@
-import { Collection, MongoClient, WithId } from "mongodb";
-import { IMongoConnector, MongoConnector } from "../MongoConnector";
+import { Collection } from "mongodb";
+import { MongoConnector } from "../MongoConnector";
+import { NewsItem, NewsItemDoc } from "./types";
 
-type NewsItem = {
-    title: string;
-    text: string;
-    createdAt: Date;
-};
-
-type NewsItemDoc = WithId<NewsItem>;
 
 export interface INewsService {
     fetchNews: () => Promise<any[]>

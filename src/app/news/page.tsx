@@ -1,13 +1,13 @@
 import { List } from "@mui/material";
 import StyledCard from "../components/cards/BigCard";
 import Footer from "../components/footer/Footer";
-import styles from "./styles.module.css";
+import styles from "./page.module.css";
 import PreviewCard from "../components/cards/PreviewCard";
 import Grid from "@mui/material/Grid2";
-import NewsService from "./NewsService";
+import NewsService, { INewsService } from "./NewsService";
 
 export default async function Page() {
-  const newsService: NewsService = new NewsService();
+  const newsService: INewsService = new NewsService();
 
   return (
     <div className={styles.page}>
