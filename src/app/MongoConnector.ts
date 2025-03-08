@@ -1,7 +1,12 @@
 import { Collection, MongoClient } from 'mongodb'
 import * as dotenv from 'dotenv'
 
-export default class MongoConnector {
+export interface IMongoConnector {
+    close: () => Promise<void>;
+    getCollection: (collectionname: string) => Collection<any>;
+}
+
+export class MongoConnector implements IMongoConnector {
     private dbName: string;
     private uri: string;
     private client: MongoClient;
@@ -17,7 +22,7 @@ export default class MongoConnector {
         await this.client.close();
     }
 
-    async getCollection(collectionName: string): Promise<Collection<any>> {
+    public getCollection(collectionName: string): Collection<any> {
         return this.client.db(this.dbName).collection(collectionName);
     }
 }
