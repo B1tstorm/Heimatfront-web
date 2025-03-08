@@ -22,17 +22,15 @@ export default function Page() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     setLoading(true);
 
-    const newsItem: NewsItem = {
-      title: title,
-      text: text,
-      createdAt: new Date(),
-      externalLink: externalLink,
-    };
-
     try {
+      const newsItem: NewsItem = {
+        title: title,
+        text: text,
+        createdAt: new Date(),
+        externalLink: externalLink,
+      };
       const hasAdded = await addNewsItem(newsItem);
 
       if (hasAdded) {

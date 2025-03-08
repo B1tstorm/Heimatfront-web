@@ -11,6 +11,10 @@ import { JSX } from "react";
 export default async function Page(): Promise<JSX.Element> {
   const newsService: INewsService = new NewsService();
 
+  const sortedNewsItemsByDate = (await newsService.fetchNews()).sort((a, b) => {
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
+
   return (
     <div className={styles.page}>
       <Grid container spacing={6}>
@@ -19,7 +23,8 @@ export default async function Page(): Promise<JSX.Element> {
             <h1>News</h1>
           </StyledCard>
         </Grid>
-        {(await newsService.fetchNews()).map((newsItem, index) => {
+
+        {sortedNewsItemsByDate.map((newsItem, index) => {
           return (
             <Grid size={{ xs: 12, md: 12 }} key={index}>
               <StyledCard align="left">
