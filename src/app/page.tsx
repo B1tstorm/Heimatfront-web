@@ -7,8 +7,14 @@ import Footer from "./components/footer/Footer";
 import PreviewCard from "./components/cards/PreviewCard";
 import StyledCard from "./components/cards/StyledCard";
 import ServerCard from "./components/cards/ServerCard";
+import NewsService, { INewsService } from "./news/NewsService";
+import { NewsItemDoc } from "./news/types";
 
 export default async function Home() {
+  const newsService: INewsService = new NewsService();
+
+  const lastNewsItems: NewsItemDoc[] = await newsService.fetchNews();
+
   return (
     <div className={styles.page}>
       <Grid container spacing={6}>
@@ -45,16 +51,9 @@ export default async function Home() {
         <Grid size={{ xs: 12, md: 6 }}>
           <h2>News</h2>
           <PreviewCard
-            title="Suchen Verstärkung"
-            description="Wir suchen wieder dringend Verstärkung in unserem Server-Team.
-                        Anforderungen an euch sind: Mind. 18 Jahre alt geistige Reife
-                        ein gut funktionierendes Headset Ehrgeiz + selbstständiges
-                        Arbeiten evtl. Erfahrung (kein MUSS) Was wir euch bieten:
-                        Aufstiegsmöglichkeiten Ausbildung und Einweisung in den Support
-                        einen zugewiesenen Mentor für eure Probezeit ein herzliches Team
-                        und Zusammenhalt Wenn ihr euch in dieser Aufgabe seht, erstellt
-                        gerne ein -Ticket (Bewerbung) Bitte beachtet, dass ihr das
-                        RICHTIGE Ticket aufmacht."
+            title={lastNewsItems[0].title}
+            description={lastNewsItems[0].text}
+            extraBtnHref={lastNewsItems[0].externalLink}
             moreBtnHref="/news"
           />
         </Grid>

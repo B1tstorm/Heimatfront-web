@@ -30,7 +30,12 @@ function PreviewCard({
       }}
     >
       <CardContent>
-        <Typography variant="h6" component="div" textAlign={"center"}>
+        <Typography
+          variant="h6"
+          component="div"
+          textAlign={"center"}
+          sx={{ p: 1 }}
+        >
           {title}
         </Typography>
         <Typography variant="body1">

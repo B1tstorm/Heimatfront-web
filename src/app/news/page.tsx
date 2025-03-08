@@ -29,7 +29,12 @@ export default async function Page(): Promise<JSX.Element> {
             <Grid size={{ xs: 12, md: 12 }} key={index}>
               <StyledCard align="left">
                 <>
-                  <Typography variant="h6" component="div" textAlign={"center"}>
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    textAlign={"center"}
+                    sx={{ p: 1 }}
+                  >
                     {newsItem.title}
                   </Typography>
 
