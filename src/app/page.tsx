@@ -5,7 +5,7 @@ import { Stack, Typography } from "@mui/material";
 
 import Footer from "./components/footer/Footer";
 import PreviewCard from "./components/cards/PreviewCard";
-import StyledCard from "./components/cards/BigCard";
+import StyledCard from "./components/cards/StyledCard";
 import ServerCard from "./components/cards/ServerCard";
 
 export default async function Home() {

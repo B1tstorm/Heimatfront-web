@@ -9,7 +9,7 @@ function Footer() {
   return (
     <footer className={styles.footer}>
       <pre>
-        <a href="https://ko-fi.com/heimatfront">
+        <a href="https://ko-fi.com/heimatfront" target="_blank">
           Spenden
           <Image
             src="/kofi_symbol.png"
@@ -20,7 +20,7 @@ function Footer() {
         </a>
       </pre>
       <pre>
-        <a href="https://discord.gg/heimatfront">
+        <a href="https://discord.gg/heimatfront" target="_blank">
           Discord
           <Image
             src="/Discord-Symbol-Blurple.png"
@@ -31,7 +31,7 @@ function Footer() {
         </a>
       </pre>
       <pre>
-        <a href="https://github.com/B1tstorm/Heimafront-web/">
+        <a href="https://github.com/B1tstorm/Heimafront-web/" target="_blank">
           Projekt
           <Image
             src="/github-mark.png"
@@ -42,7 +42,7 @@ function Footer() {
         </a>
       </pre>
       <pre>
-        <a href="https://discord.gg/Es8RVSNW">
+        <a href="https://discord.gg/Es8RVSNW" target="_blank">
           Dev Kontakt
           <Image
             src="https://avatars.githubusercontent.com/u/51802149?v=4"
