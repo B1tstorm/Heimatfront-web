@@ -78,3 +78,31 @@ h3 {
   background-color: transparent;
 }
 
+/* Grüne Umrandung für Textfelder */
+.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: rgb(15, 27, 15) !important; /* Grüne Umrandung */
+}
+
+.MuiOutlinedInput-root:hover fieldset {
+  border-color: green !important; /* Grüne Umrandung im Hover-Zustand */
+}
+
+.MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: green !important; /* Grüne Umrandung im Fokus */
+}
+
+/* Weißer Text für die Eingabe */
+.MuiInputBase-input {
+  color: white !important; /* Weißer Text */
+}
+
+/* Weißes Label */
+.MuiFormLabel-root.MuiInputLabel-root{
+    color: rgb(128, 128, 128) !important;
+}
+
+/* Weißes Label im Fokus */
+.MuiFormLabel-root.MuiInputLabel-root.Mui-focused {
+  color: green !important;
+}
+

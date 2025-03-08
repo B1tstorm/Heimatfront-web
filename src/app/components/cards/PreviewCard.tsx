@@ -47,7 +47,7 @@ function PreviewCard({
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">
+        <Button size="small" variant="contained">
           <Link href={moreBtnHref}>Mehr</Link>
         </Button>
       </CardActions>

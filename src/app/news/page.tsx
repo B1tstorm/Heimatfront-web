@@ -6,8 +6,9 @@ import Grid from "@mui/material/Grid2";
 import NewsService, { INewsService } from "./NewsService";
 import Link from "next/link";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { JSX } from "react";
 
-export default async function Page() {
+export default async function Page(): Promise<JSX.Element> {
   const newsService: INewsService = new NewsService();
 
   return (
@@ -28,7 +29,7 @@ export default async function Page() {
                   </Typography>
 
                   <Typography variant="body1">{newsItem.text}</Typography>
-                  <Divider sx={{ padding: 1 }} />
+                  <Divider sx={{ padding: 1, mb: 2 }} />
 
                   <Typography variant="overline">
                     <CalendarMonthIcon
@@ -39,7 +40,7 @@ export default async function Page() {
                   </Typography>
 
                   {newsItem.externalLink ? (
-                    <Button size="small" sx={{ paddingLeft: 2 }}>
+                    <Button size="small" sx={{ ml: 2 }} variant="contained">
                       <Link target="_blank" href={newsItem.externalLink || ""}>
                         Weitere Infos
                       </Link>

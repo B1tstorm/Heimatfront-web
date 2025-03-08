@@ -1,11 +1,11 @@
-import { Collection, WithId } from "mongodb";
+import { Collection, InsertOneResult, WithId } from "mongodb";
 import { MongoConnector } from "../MongoConnector";
 import { NewsItem, NewsItemDoc } from "./types";
 
 
 export interface INewsService {
     fetchNews: () => Promise<NewsItemDoc[]>
-    addNews: (newsItem: NewsItem) => Promise<void>
+    addNews: (newsItem: NewsItem) => Promise<boolean>
 }
 
 export default class NewsService implements INewsService {
@@ -28,9 +28,10 @@ export default class NewsService implements INewsService {
         }
     }
 
-    async addNews(newsItem: NewsItem): Promise<void> {
+    async addNews(newsItem: NewsItem): Promise<boolean> {
         try {
-            await this.news.insertOne(newsItem);
+            const result: InsertOneResult = await this.news.insertOne(newsItem);
+            return result.acknowledged;
         } finally {
             await this.db.close();
         }

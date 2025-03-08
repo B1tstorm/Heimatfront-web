@@ -44,7 +44,7 @@ function ServerCard(): JSX.Element {
       </CardContent>
       <CardActions>
         <>
-          <Button size="small">
+          <Button size="small" variant="contained">
             <Link
               href="https://www.battlemetrics.com/servers/search?q=Heimatfront&sort=score&game=reforger&countries%5Bor%5D=DE"
               target="_blank"
@@ -52,7 +52,7 @@ function ServerCard(): JSX.Element {
               Battlemetrics
             </Link>
           </Button>
-          <Button size="small" onClick={refetchServerInfos}>
+          <Button size="small" onClick={refetchServerInfos} variant="contained">
             Reload
           </Button>
         </>

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Grid from "@mui/material/Grid2";
-import { Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 
 import Footer from "./components/footer/Footer";
 import PreviewCard from "./components/cards/PreviewCard";
@@ -83,14 +83,16 @@ export default async function Home() {
               <Typography variant="subtitle1">
                 Oder mit einer Spende um die monatlichen Kosten zu decken
                 {"  "}
-                <a href="https://ko-fi.com/heimatfront">
-                  <Image
-                    src="/kofi_symbol.png"
-                    alt="Official Ko-fi logo"
-                    width={30}
-                    height={30}
-                  />
-                </a>
+                <Button variant="contained">
+                  <a href="https://ko-fi.com/heimatfront">
+                    <Image
+                      src="/kofi_symbol.png"
+                      alt="Official Ko-fi logo"
+                      width={30}
+                      height={30}
+                    />
+                  </a>
+                </Button>
               </Typography>
             </Stack>
           </StyledCard>
