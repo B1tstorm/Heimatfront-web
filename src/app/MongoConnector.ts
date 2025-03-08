@@ -17,7 +17,7 @@ export default class MongoConnector {
         await this.client.close();
     }
 
-    async getCollection(collectionName: string): Promise<Collection> {
+    async getCollection(collectionName: string): Promise<Collection<any>> {
         return this.client.db(this.dbName).collection(collectionName);
     }
 }
