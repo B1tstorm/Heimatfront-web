@@ -80,5 +80,5 @@ ENV MONGO_CONNECTION_STRING=${MONGO_CONNECTION_STRING}
 # ENV NEXT_TELEMETRY_DISABLED 1
 
 # Note: Don't expose ports here, Compose will handle that for us
-
+EXPOSE 3000
 CMD ["node", "server.js"]
