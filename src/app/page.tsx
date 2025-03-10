@@ -9,11 +9,27 @@ import StyledCard from "./components/cards/StyledCard";
 import ServerCard from "./components/cards/ServerCard";
 import NewsService, { INewsService } from "./news/NewsService";
 import { NewsItemDoc } from "./news/types";
+import { ObjectId } from "mongodb";
 
 export default async function Home() {
-  const newsService: INewsService = new NewsService();
+  let newsItem: NewsItemDoc = {
+    _id: new ObjectId(),
+    title: "Nichts neues",
+    text: "Keine Informationen verfügbar",
+    externalLink: "",
+    createdAt: new Date(),
+  };
 
-  const lastNewsItems: NewsItemDoc[] = await newsService.fetchNews();
+  try {
+    const newsService: INewsService = new NewsService();
+    const lastNewsItems: NewsItemDoc[] = await newsService.fetchNews();
+
+    if (lastNewsItems) {
+      newsItem = lastNewsItems[0];
+    }
+  } catch (_) {
+    console.log("No connection to DB!");
+  }
 
   return (
     <div className={styles.page}>
@@ -51,9 +67,9 @@ export default async function Home() {
         <Grid size={{ xs: 12, md: 6 }}>
           <h2>News</h2>
           <PreviewCard
-            title={lastNewsItems[0].title}
-            description={lastNewsItems[0].text}
-            extraBtnHref={lastNewsItems[0].externalLink}
+            title={newsItem.title}
+            description={newsItem.text}
+            extraBtnHref={newsItem.externalLink}
             moreBtnHref="/news"
           />
         </Grid>

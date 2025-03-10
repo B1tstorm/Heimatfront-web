@@ -7,13 +7,34 @@ import NewsService, { INewsService } from "./NewsService";
 import Link from "next/link";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { JSX } from "react";
+import { NewsItemDoc } from "./types";
+import { ObjectId } from "mongodb";
 
 export default async function Page(): Promise<JSX.Element> {
-  const newsService: INewsService = new NewsService();
+  let newsItems: NewsItemDoc[] = [
+    {
+      _id: new ObjectId(),
+      title: "Nichts neues",
+      text: "Keine Informationen verfügbar",
+      externalLink: "",
+      createdAt: new Date(),
+    },
+  ];
 
-  const sortedNewsItemsByDate = (await newsService.fetchNews()).sort((a, b) => {
-    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-  });
+  try {
+    const newsService: INewsService = new NewsService();
+    const sortedNewsItemsByDate: NewsItemDoc[] = (
+      await newsService.fetchNews()
+    ).sort((a, b) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
+
+    if (sortedNewsItemsByDate) {
+      newsItems = sortedNewsItemsByDate;
+    }
+  } catch (_) {
+    console.log("No connection to DB!");
+  }
 
   return (
     <div className={styles.page}>
@@ -24,7 +45,7 @@ export default async function Page(): Promise<JSX.Element> {
           </StyledCard>
         </Grid>
 
-        {sortedNewsItemsByDate.map((newsItem, index) => {
+        {newsItems.map((newsItem, index) => {
           return (
             <Grid size={{ xs: 12, md: 12 }} key={index}>
               <StyledCard align="left">
