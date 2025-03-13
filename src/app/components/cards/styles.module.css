@@ -1,0 +1,9 @@
+.myMuiCard {
+    background-color: rgb(26, 41, 31) !important;
+    color: beige !important;
+  }
+
+.myMuiPaper {
+    background-color: transparent !important;
+    color: beige !important;
+  }

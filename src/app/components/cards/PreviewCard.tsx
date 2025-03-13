@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
+import styles from "./styles.module.css";
 
 interface PreviewCardProps {
   title: string;
@@ -22,6 +23,7 @@ function PreviewCard({
 }: PreviewCardProps) {
   return (
     <Card
+      className={styles.myMuiCard}
       sx={{
         minHeight: 420,
         maxHeight: 420,

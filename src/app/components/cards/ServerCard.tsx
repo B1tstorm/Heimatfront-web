@@ -13,16 +13,22 @@ import ExtensionOutlinedIcon from "@mui/icons-material/ExtensionOutlined";
 import Link from "next/link";
 import { useBattleMetricsAPI } from "./useBattleMetricsAPI";
 import { JSX } from "react";
+import styles from "./styles.module.css";
 
 function ServerCard(): JSX.Element {
   const { serverInfosData, refetchServerInfos } = useBattleMetricsAPI();
 
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card className={styles.myMuiCard} sx={{ minWidth: 275 }}>
       <CardContent style={{ textAlign: "center" }}>
         <Stack spacing={2}>
           {serverInfosData.map((serverInfo: ServerInfoData, index: number) => (
-            <Paper key={index} sx={{ padding: 2 }} elevation={4}>
+            <Paper
+              key={index}
+              sx={{ padding: 2 }}
+              elevation={4}
+              className={styles.myMuiPaper}
+            >
               <Stack direction="row" spacing={4} alignItems="end">
                 <p>{serverInfo.attributes.status === "online" ? "🟢" : "🔴"}</p>
                 <p>Rang #{serverInfo.attributes.rank}</p>

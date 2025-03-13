@@ -139,11 +139,3 @@ a.secondary {
     filter: invert();
   }
 }
-
-.primaryTextColor {
-  color: rgb(26, 41, 31)
-}
-
-.primaryBgColor {
-  background-color: rgb(26, 41, 31)
-}

@@ -49,16 +49,7 @@ a:hover {
 /* Overwrittings of MUI css*/
 
 p {
-  color: white;
-}
-
-.MuiCard-root {
-  background-color: rgb(26, 41, 31);
-  color: white;
-}
-.css-1fdopfm-MuiPaper-root {
-  background-color: transparent;
-  color: white;
+  color: beige;
 }
 
 h2 {
@@ -70,13 +61,13 @@ h3 {
 }
 
 .MuiButton-root {
-  color:rgb(134, 170, 62);
-  background-color: transparent;
+  color:rgb(134, 170, 62) !important;
+  background-color: transparent !important;
 }
 
 .MuiButton-root:hover {
-  color:yellowgreen;
-  background-color: transparent;
+  color:yellowgreen !important;
+  background-color: transparent !important;
 }
 
 /* Grüne Umrandung für Textfelder */
@@ -94,7 +85,7 @@ h3 {
 
 /* Weißer Text für die Eingabe */
 .MuiInputBase-input {
-  color: white !important; /* Weißer Text */
+  color: beige !important; /* Weißer Text */
 }
 
 /* Weißes Label */

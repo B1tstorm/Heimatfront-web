@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { NewsItem } from "../news/types";
 import { addNewsItem } from "./newsActions";
+import styles from "@/app/components/cards/styles.module.css";
 
 export default function Page() {
   const [title, setTitle] = useState<string>("");
@@ -54,7 +55,7 @@ export default function Page() {
 
   return (
     <Container maxWidth="md" sx={{ paddingTop: 15 }}>
-      <Card sx={{ mt: 4 }}>
+      <Card sx={{ mt: 4 }} className={styles.myMuiCard}>
         <CardContent>
           <Typography variant="h3" gutterBottom>
             Erstelle neuen News Eintrag
