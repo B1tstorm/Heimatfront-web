@@ -9,6 +9,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { JSX } from "react";
 import { NewsItemDoc } from "./types";
 import { ObjectId } from "mongodb";
+export const dynamic = "force-dynamic";
 
 export default async function Page(): Promise<JSX.Element> {
   let newsItems: NewsItemDoc[] = [

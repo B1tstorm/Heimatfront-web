@@ -10,6 +10,7 @@ import ServerCard from "./components/cards/ServerCard";
 import NewsService, { INewsService } from "./news/NewsService";
 import { NewsItemDoc } from "./news/types";
 import { ObjectId } from "mongodb";
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   let newsItem: NewsItemDoc = {
@@ -22,10 +23,10 @@ export default async function Home() {
 
   try {
     const newsService: INewsService = new NewsService();
-    const lastNewsItems: NewsItemDoc[] = await newsService.fetchNews();
+    const lastNewsItem: NewsItemDoc = await newsService.fetchLastNewsItem();
 
-    if (lastNewsItems) {
-      newsItem = lastNewsItems[0];
+    if (lastNewsItem) {
+      newsItem = lastNewsItem;
     }
   } catch (_) {
     console.log("No connection to DB!");
