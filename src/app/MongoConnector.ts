@@ -12,6 +12,9 @@ export class MongoConnector implements IMongoConnector {
 
     constructor() {
         dotenv.config();
+        if (!process.env.MONGO_CONNECTION_STRING || !process.env.MONGO_DATABASE_NAME) {
+            throw new Error('Missing environment variables in .env file')
+        }
         this.dbName = process.env.MONGO_DATABASE_NAME || '';
         this.uri = process.env.MONGO_CONNECTION_STRING || '';
     }
