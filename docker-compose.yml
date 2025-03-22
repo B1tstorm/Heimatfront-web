@@ -1,16 +1,16 @@
 version: '3.8'
 
 services:
-  website:
-    image: heimatfront-web:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - MONGO_CONNECTION_STRING=mongodb://database:27017
-    depends_on:
-      - database
-    networks:
-      - app-network
+  # website:
+  #   image: heimatfront-web:latest
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - MONGO_CONNECTION_STRING=mongodb://database:27017
+  #   depends_on:
+  #     - database
+  #   networks:
+  #     - app-network
 
   database:
     image: mongo:latest
