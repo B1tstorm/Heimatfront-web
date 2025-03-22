@@ -5,6 +5,8 @@ services:
     image: heimatfront-web:latest
     ports:
       - "3000:3000"
+    environment:
+      - MONGO_CONNECTION_STRING=mongodb://database:27017
     depends_on:
       - database
     networks:
