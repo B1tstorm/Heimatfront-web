@@ -24,6 +24,10 @@ export default async function Home() {
   try {
     const newsService: INewsService = new NewsService();
     const lastNewsItem: NewsItemDoc = await newsService.fetchLastNewsItem();
+    console.log(
+      "Letzter Eintrag aus der Datenbank wurde geladen: ",
+      lastNewsItem.title
+    );
 
     if (lastNewsItem) {
       newsItem = lastNewsItem;
@@ -93,8 +97,7 @@ export default async function Home() {
               </Typography>
               <Typography variant="body1">
                 - Ideen die unsere Website oder unseren eigenen Bot betreffen
-                kannst du über Github mitteilen - Ideen die unsere Website oder
-                unseren eigenen Bot betreffen kannst du über Github mitteilen
+                kannst du über Github mitteilen
               </Typography>
               <Typography variant="subtitle1">
                 Oder mit einer Spende um die monatlichen Kosten zu decken

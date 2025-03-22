@@ -9,6 +9,7 @@ export interface IMongoConnector {
 export class MongoConnector implements IMongoConnector {
     private dbName: string;
     private uri: string;
+    private client: MongoClient | null = null;
 
     constructor() {
         dotenv.config();
@@ -20,12 +21,17 @@ export class MongoConnector implements IMongoConnector {
     }
 
     async close(): Promise<void> {
-        const client = new MongoClient(this.uri);
-        await client.close();
+        if (this.client) {
+            await this.client.close();
+            this.client = null;
+        }
     }
 
     public async getCollection(collectionName: string): Promise<Collection<any>> {
-        const client = new MongoClient(this.uri);
-        return await client.db(this.dbName).collection(collectionName);
+        if (!this.client) {
+            this.client = new MongoClient(this.uri);
+            await this.client.connect();
+        }
+        return this.client.db(this.dbName).collection(collectionName);
     }
 }

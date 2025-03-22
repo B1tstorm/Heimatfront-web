@@ -34,8 +34,9 @@ export default class NewsService implements INewsService {
         try {
             const news = await this.db.getCollection(this.collectionName);
             return (await news.findOne({}, { sort: { createdAt: -1 } }))
-        } finally {
-            await this.db.close();
+        } catch (e) {
+            console.error("Fehler beim Abrufen des letzten News eintrags: ", e);
+            throw e;
         }
     }
 
