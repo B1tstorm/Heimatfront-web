@@ -25,8 +25,9 @@ export default class NewsService implements INewsService {
                 .find({})
                 .toArray())
                 .map((doc) => doc);
-        } finally {
-            await this.db.close();
+        } catch (e) {
+            console.error("Fehler beim Abrufen der News einträge: ", e);
+            throw e;
         }
     }
 
@@ -45,8 +46,9 @@ export default class NewsService implements INewsService {
             const news = await this.db.getCollection(this.collectionName);
             const result: InsertOneResult = await news.insertOne(newsItem);
             return result.acknowledged;
-        } finally {
-            await this.db.close();
+        } catch (e) {
+            console.error("Fehler beim Speichern des neuen News eintrags: ", e);
+            throw e;
         }
     }
 }
